@@ -1,125 +1,59 @@
 tags:
-- name: users
-  description: users API
+- name: city
+  description: cities temperatures API
 
 paths:
-# [GET] users
-  /users:
+# [GET] citynames
+  /citynames:
     get:
       tags:
-      - users
-      summary: Find All Users
+      - city
+      summary: Retrieve all supported city names
       responses:
         200:
           description: 'OK'
         500:
           description: 'Server Error'
 
-# [POST] users
-    post:
-      tags:
-      - users
-      summary: Add User
-      parameters:
-      - name: body
-        in: body
-        description: user Data
-        required: true
-        schema:
-          $ref: '#/definitions/users'
-      responses:
-        201:
-          description: 'Created'
-        400:
-          description: 'Bad Request'
-        409:
-          description: 'Conflict'
-        500:
-          description: 'Server Error'
-
-# [GET] users/id
-  /users/{id}:
+# [GET] city/id
+  /city?name=:
     get:
       tags:
-      - users
-      summary: Find User By Id
+      - city
+      summary: Retrieve temperatures and sunrise/sunset time of a city
       parameters:
-      - name: id
-        in: path
-        description: User Id
+      - name: name
+        in: query
+        description: City name
         required: true
-        type: integer
-      responses:
-        200:
-          description: 'OK'
-        409:
-          description: 'Conflict'
-        500:
-          description: 'Server Error'
-
-# [PUT] users/id
-    put:
-      tags:
-      - users
-      summary: Update User By Id
-      parameters:
-      - name: id
-        in: path
-        description: user Id
-        required: true
-        type: integer
-      - name: body
-        in: body
-        description: user Data
-        required: true
-        schema:
-          $ref: '#/definitions/users'
-      responses:
-        200:
-          description: 'OK'
-        400:
-          description: 'Bad Request'
-        409:
-          description: 'Conflict'
-        500:
-          description: 'Server Error'
-
-# [DELETE] users/id
-    delete:
-      tags:
-      - users
-      summary: Delete User By Id
-      parameters:
-      - name: id
-        in: path
-        description: user Id
-        required: true
-        type: integer
-      responses:
-        200:
-          description: 'OK'
-        409:
-          description: 'Conflict'
-        500:
-          description: 'Server Error'
-
-# definitions
-definitions:
-  users:
-    type: object
-    required:
-        - email
-        - password
-    properties:
-      id:
-        type: integer
-        description: user Id
-      email:
         type: string
-        description: user Email
-      password:
+      responses:
+        200:
+          description: 'OK'
+        404:
+          description: 'Data not found'
+        500:
+          description: 'Server Error'
+
+# [GET] cities/id
+  /cities?names=:
+    get:
+      tags:
+      - city
+      summary: Retrieve temperatures and sunrise/sunset time of multiple cities
+      parameters:
+      - name: names
+        in: query
+        description: City names separated by | symbol
+        required: true
         type: string
-        description: user Password
+      responses:
+        200:
+          description: 'OK'
+        404:
+          description: 'Data not found'
+        500:
+          description: 'Server Error'
 
 schemes:
  - https
