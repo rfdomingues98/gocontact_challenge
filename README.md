@@ -17,6 +17,6 @@
    ```$ npm install && npm run start```
 5. From the client directory, run the following command: 
    ```$ npm install && npm run start```
-6. Open [[http://127.0.0.1:3000]] in your browser.
+6. Open http://127.0.0.1:3000 in your browser.
 
 Note: The logs of each request to the api are stored in the server/dist/logs/ directory.
