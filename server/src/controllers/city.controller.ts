@@ -43,7 +43,6 @@ class CityController {
           : [...unique, item];
       }, []);
       const ids = cities.map(city => city.id);
-      console.log(cities);
       const data = (await axios.get(`https://api.openweathermap.org/data/2.5/group?id=${ids}&units=metric&appid=${process.env.API_KEY}`)).data;
 
       const result = data.list;
